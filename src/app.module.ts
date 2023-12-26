@@ -17,12 +17,8 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
       extra: {
         ssl: process.env.STAGE === 'prod' ? { rejectUnauthorized: false }: null
       },
+      url: `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${+process.env.DB_PORT}/${process.env.DB_NAME}`,
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
       autoLoadEntities: true,   
       synchronize: true,
     }),
