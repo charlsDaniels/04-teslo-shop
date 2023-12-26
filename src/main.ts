@@ -9,7 +9,7 @@ async function bootstrap() {
   
   app.setGlobalPrefix('api')
   
-  const port = process.env.APP_PORT
+  const port = process.env.APP_PORT || 3000
 
   const config = new DocumentBuilder()
     .setTitle('Teslo REST API')
@@ -19,7 +19,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
   
-  await app.listen(port);
-  logger.log(`App running on port ${ process.env.PORT }`);
+  await app.listen(port, "0.0.0.0");
+  logger.log(`App running on port ${port}`);
 }
 bootstrap();
