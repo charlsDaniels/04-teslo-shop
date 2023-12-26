@@ -9,7 +9,7 @@ async function bootstrap() {
   
   app.setGlobalPrefix('api')
   
-  const port = process.env.APP_PORT || 3000
+  const port = process.env.PORT || 3000
 
   const config = new DocumentBuilder()
     .setTitle('Teslo REST API')
