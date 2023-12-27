@@ -1,13 +1,13 @@
+import { Body, Controller, Get, Headers, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthService } from './auth.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { Body, Controller, Get, Head, Headers, Post, SetMetadata, UseGuards } from '@nestjs/common';
-import { User } from './entities/user.entity';
+import { ApiTags } from '@nestjs/swagger';
 import { IncomingHttpHeaders } from 'http';
+import { AuthService } from './auth.service';
+import { Auth, GetUser, RawHeaders, RoleProtected } from './decorators';
+import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './entities/user.entity';
 import { UserRoleGuard } from './guards/user-role.guard';
 import { ValidRoles } from './interfaces';
-import { Auth, GetUser, RawHeaders, RoleProtected } from './decorators';
-import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -41,9 +41,7 @@ export class AuthController {
     }
   }
 
-
   @Get('privateRouteTwo')
-  
   // este decorator @SetMetadata se usa poco porque es facil cometer errores, mejor hacerlo de otra manera
   // @SetMetadata('roles', ['admin', 'super-user'])
 
